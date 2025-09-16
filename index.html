@@ -4,506 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ahmed Hesham - UI/UX & Flutter Developer</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #e4e6ea;
-            background: #0a0a0f;
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header/Cover Section */
-        .hero {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            color: white;
-            padding: 100px 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 30% 20%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 80%, rgba(255, 119, 198, 0.2) 0%, transparent 50%);
-            opacity: 0.6;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            animation: fadeInUp 1s ease;
-            background: linear-gradient(45deg, #7777c6, #ff77c6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero .subtitle {
-            font-size: 1.5rem;
-            font-weight: 300;
-            margin-bottom: 30px;
-            opacity: 0.9;
-            animation: fadeInUp 1s ease 0.2s both;
-        }
-
-        .hero .tagline {
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto;
-            animation: fadeInUp 1s ease 0.4s both;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Main Content */
-        .main-content {
-            background: #0f0f17;
-            margin-top: -50px;
-            border-radius: 20px 20px 0 0;
-            position: relative;
-            z-index: 2;
-            box-shadow: 0 -10px 40px rgba(0,0,0,0.3);
-        }
-
-        .section {
-            padding: 80px 0;
-            border-bottom: 1px solid #1a1a2e;
-        }
-
-        .section:last-child {
-            border-bottom: none;
-        }
-
-        .section h2 {
-            font-size: 2.5rem;
-            color: #ffffff;
-            margin-bottom: 50px;
-            text-align: center;
-            position: relative;
-        }
-
-        .section h2::after {
-            content: '';
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(135deg, #7777c6, #ff77c6);
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-radius: 2px;
-        }
-
-        /* About Section */
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .about-image {
-            text-align: center;
-        }
-
-        .profile-image {
-            width: 250px;
-            height: 300px;
-            background: linear-gradient(135deg, #7777c6, #ff77c6);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto;
-            position: relative;
-            overflow: hidden;
-        }
-
-  
-
-        .about-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #b0b3b8;
-        }
-
-        /* Skills Section */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-        }
-
-        .skill-category {
-            background: linear-gradient(135deg, #16213e, #1a1a2e);
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease;
-            border: 1px solid #2a2a4a;
-        }
-
-        .skill-category:hover {
-            transform: translateY(-10px);
-            border-color: #7777c6;
-            box-shadow: 0 20px 40px rgba(119, 119, 198, 0.2);
-        }
-
-        .skill-category h3 {
-            color: #ffffff;
-            margin-bottom: 20px;
-            font-size: 1.5rem;
-        }
-
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .skill-tag {
-            background: linear-gradient(135deg, #7777c6, #ff77c6);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        /* Services Section */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-        }
-
-        .service-card {
-            background: linear-gradient(135deg, #16213e, #1a1a2e);
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 2px solid #2a2a4a;
-        }
-
-        .service-card:hover {
-            transform: translateY(-15px);
-            border-color: #7777c6;
-            box-shadow: 0 25px 60px rgba(119, 119, 198, 0.3);
-        }
-
-        .service-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            display: block;
-        }
-
-        .service-card h3 {
-            color: #ffffff;
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-        }
-
-        .service-card p {
-            color: #b0b3b8;
-            line-height: 1.6;
-        }
-
-        /* Projects Section */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 40px;
-        }
-
-        .project-card {
-            background: linear-gradient(135deg, #16213e, #1a1a2e);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-            transition: all 0.3s ease;
-            border: 1px solid #2a2a4a;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 60px rgba(119, 119, 198, 0.2);
-            border-color: #7777c6;
-        }
-
-        .project-image {
-            height: 200px;
-            background: linear-gradient(135deg, #7777c6, #ff77c6);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 2rem;
-            font-weight: bold;
-            overflow: hidden;
-        }
-
-
-        .project-content {
-            padding: 30px;
-        }
-
-        .project-card h3 {
-            color: #ffffff;
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-        }
-
-        .project-card p {
-            color: #b0b3b8;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .tech-tag {
-            background: #2a2a4a;
-            color: #e4e6ea;
-            padding: 4px 12px;
-            border-radius: 15px;
-            font-size: 0.85rem;
-        }
-
-        /* Certifications Section */
-        .certifications-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .certification-card {
-            background: linear-gradient(135deg, #16213e, #1a1a2e);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            transition: all 0.3s ease;
-            border: 1px solid #2a2a4a;
-        }
-
-        .certification-card:hover {
-            transform: translateY(-5px);
-            border-color: #7777c6;
-            box-shadow: 0 15px 40px rgba(119, 119, 198, 0.2);
-        }
-
-        .certification-card h3 {
-            color: #ffffff;
-            margin-bottom: 10px;
-            font-size: 1.2rem;
-        }
-
-        .certification-card .provider {
-            color: #7777c6;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .certification-card p {
-            color: #b0b3b8;
-            font-size: 0.9rem;
-        }
-
-        /* Education Section */
-        .education-timeline {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .education-item {
-            background: linear-gradient(135deg, #16213e, #1a1a2e);
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            margin-bottom: 30px;
-            position: relative;
-            border: 1px solid #2a2a4a;
-        }
-
-        .education-item::before {
-            content: '🎓';
-            position: absolute;
-            top: 40px;
-            left: -20px;
-            background: #7777c6;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-        }
-
-        .education-item h3 {
-            color: #ffffff;
-            margin-bottom: 10px;
-            font-size: 1.5rem;
-        }
-
-        .education-item .date {
-            color: #7777c6;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .education-item .institution {
-            color: #b0b3b8;
-            font-style: italic;
-            margin-bottom: 15px;
-        }
-
-        /* Contact Section */
-        .contact-content {
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .contact-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
-        }
-
-        .contact-item {
-            background: linear-gradient(135deg, #16213e, #1a1a2e);
-            padding: 30px;
-            border-radius: 15px;
-            transition: all 0.3s ease;
-            border: 1px solid #2a2a4a;
-        }
-
-        .contact-item:hover {
-            background: linear-gradient(135deg, #7777c6, #ff77c6);
-            color: white;
-            transform: translateY(-5px);
-        }
-
-        .contact-item .icon {
-            font-size: 2rem;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .contact-item h3 {
-            color: #ffffff;
-        }
-
-        .contact-item p {
-            color: #b0b3b8;
-        }
-
-        .contact-item:hover h3,
-        .contact-item:hover p {
-            color: white;
-        }
-
-
-        .cta-button {
-            background: linear-gradient(135deg, #7777c6, #ff77c6);
-            color: white;
-            padding: 15px 40px;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 30px;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(119, 119, 198, 0.4);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero .subtitle {
-                font-size: 1.2rem;
-            }
-            
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            
-            .profile-image {
-                width: 200px;
-                height: 240px;
-            }
-            
-            .section {
-                padding: 60px 0;
-            }
-            
-            .section h2 {
-                font-size: 2rem;
-            }
-            
-            .projects-grid,
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-    </style>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <!-- Hero/Cover Section -->
@@ -525,7 +26,7 @@
                 <div class="about-content">
                     <div class="about-image">
                         <div class="profile-image">
-                            <img src="me.jpeg" alt="Ahmed Hesham" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
+                            <img src="assets/images/me.jpeg" alt="Ahmed Hesham" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
                         </div>
                     </div>
                     <div class="about-text">
@@ -630,42 +131,41 @@
             </div>
         </section>
 
-    <!-- Projects Section -->
-<section id="projects" class="section">
-    <div class="container">
-        <h2>Featured Projects</h2>
-        <div class="projects-grid">
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="graph.jpg" alt="Graph Social App" style="width: 100%; height: auto; object-fit: contain;">
-                </div>
-                <div class="project-content">
-                    <h3>Graph - Social Media App</h3>
-                    <p>A comprehensive social media application featuring user profiles, dual content feeds, real-time chat, and push notifications...</p>
+        <!-- Projects Section -->
+        <section id="projects" class="section">
+            <div class="container">
+                <h2>Featured Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="assets/images/graph.jpg" alt="Graph Social App" style="width: 100%; height: auto; object-fit: contain;">
+                        </div>
+                        <div class="project-content">
+                            <h3>Graph - Social Media App</h3>
+                            <p>A comprehensive social media application featuring user profiles, dual content feeds, real-time chat, and push notifications...</p>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="assets/images/fakemind.png" alt="AI Chatbot App" style="width: 100%; height: auto; object-fit: contain;">
+                        </div>
+                        <div class="project-content">
+                            <h3>Fake-Mind AI Chatbot</h3>
+                            <p>An intelligent chatbot application using Gemini AI with markdown support, responsive design, and intuitive user interface...</p>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="assets/images/aerogo.png" alt="Aerogo UI/UX Design" style="width: 100%; height: auto; object-fit: contain;">
+                        </div>
+                        <div class="project-content">
+                            <h3>Aerogo</h3>
+                            <p>A UI/UX design project created with Figma, covering all UX phases including research, wireframing, prototyping, and testing...</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="fakemind.png" alt="AI Chatbot App" style="width: 100%; height: auto; object-fit: contain;">
-                </div>
-                <div class="project-content">
-                    <h3>Fake-Mind AI Chatbot</h3>
-                    <p>An intelligent chatbot application using Gemini AI with markdown support, responsive design, and intuitive user interface...</p>
-                </div>
-            </div>
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="aerogo.png" alt="Aerogo UI/UX Design" style="width: 100%; height: auto; object-fit: contain;">
-                </div>
-                <div class="project-content">
-                    <h3>Aerogo</h3>
-                    <p>A UI/UX design project created with Figma, covering all UX phases including research, wireframing, prototyping, and testing...</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
+        </section>
 
         <!-- Certifications Section -->
         <section id="certifications" class="section">
@@ -729,8 +229,6 @@
                         <div class="institution">IDH Internship, Algiza</div>
                         <p>Gained hands-on experience in network architecture and security. Skilled in configuring firewalls (FortiGate), load balancers, DMZ zones, VOIP, wireless controllers, Microsoft Azure, and CCTV systems.</p>
                     </div>
-                    
-              
                 </div>
             </div>
         </section>
@@ -749,13 +247,13 @@
                             <p>ahmedh200987@gmail.com</p>
                         </div>
                         
-                       <div class="contact-item">
-    <a href="https://github.com/0xAhmd" target="_blank" style="text-decoration: none; color: inherit;">
-        <img src="github-icon-1-logo.svg" alt="GitHub Logo" style="width: 40px; height: 40px; margin-bottom: 15px;">
-        <h3>GitHub</h3>
-        <p>0xAhmd</p>
-    </a>
-</div>
+                        <div class="contact-item">
+                            <a href="https://github.com/0xAhmd" target="_blank" style="text-decoration: none; color: inherit;">
+                                <img src="assets/images/github-icon-1-logo.svg" alt="GitHub Logo" style="width: 40px; height: 40px; margin-bottom: 15px;">
+                                <h3>GitHub</h3>
+                                <p>0xAhmd</p>
+                            </a>
+                        </div>
                         
                         <div class="contact-item">
                             <a href="https://www.linkedin.com/in/ahmed-hesham-268888270/" target="_blank" style="text-decoration: none; color: inherit;">
@@ -770,6 +268,6 @@
         </section>
     </div>
 
-   
+    <script src="js/main.js"></script>
 </body>
 </html>
