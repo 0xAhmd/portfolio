@@ -81,15 +81,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Add loading animation for project images
     document.querySelectorAll('.project-image img').forEach(img => {
-        img.addEventListener('load', function() {
-            this.style.opacity = '1';
-            this.style.transform = 'scale(1)';
-        });
-        
-        // Set initial state
+        // Set initial state first
         img.style.opacity = '0';
         img.style.transform = 'scale(1.1)';
         img.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        
+        // Function to show image
+        const showImage = () => {
+            img.style.opacity = '1';
+            img.style.transform = 'scale(1)';
+        };
+        
+        // Check if image is already loaded
+        if (img.complete && img.naturalHeight !== 0) {
+            showImage();
+        } else {
+            // Add load event listener
+            img.addEventListener('load', showImage);
+            img.addEventListener('error', function() {
+                // Show image even if there's an error
+                this.style.opacity = '1';
+                this.style.transform = 'scale(1)';
+            });
+        }
     });
 
     // Console log for portfolio
