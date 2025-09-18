@@ -67,25 +67,7 @@ const projectsData = {
             { name: 'REST APIs', icon: '🔌' },
             { name: 'Cloud Firestore', icon: '☁️' }
         ],
-        teammates: [
-            {
-                name: 'Ahmed Ali',
-                role: 'Backend Developer',
-                initials: 'AA',
-                contribution: 'Developed server-side APIs and database architecture'
-            },
-            {
-                name: 'Sarah Mohamed',
-                role: 'QA Engineer',
-                initials: 'SM',
-                contribution: 'Conducted comprehensive testing and bug reporting'
-            }
-        ],
-        links: [
-            { text: 'View on GitHub', url: 'https://github.com/0xAhmd/graph-social', icon: '🔗' },
-            { text: 'Download APK', url: '#', icon: '⬇️' },
-            { text: 'Figma Design', url: '#', icon: '🎨' }
-        ]
+        teammates: [] // Solo work
     },
     'fakemind-ai': {
         id: 'fakemind-ai',
@@ -153,11 +135,7 @@ const projectsData = {
             { name: 'Hive DB', icon: '💾' },
             { name: 'HTTP', icon: '🌐' }
         ],
-        teammates: [], // Solo project
-        links: [
-            { text: 'GitHub Repository', url: 'https://github.com/0xAhmd/fakemind', icon: '🔗' },
-            { text: 'Live Demo', url: '#', icon: '🚀' }
-        ]
+        teammates: [] // Solo work
     },
     'aerogo-fitness': {
         id: 'aerogo-fitness',
@@ -218,25 +196,17 @@ const projectsData = {
         ],
         tools: [
             { name: 'Figma', icon: '🎨' },
-            { name: 'Miro', icon: '📋' },
+            { name: 'Figjam', icon: '📋' },
             { name: 'Adobe XD', icon: '🎯' },
             { name: 'Prototyping', icon: '🔄' },
             { name: 'User Research', icon: '📊' },
             { name: 'Wireframing', icon: '📐' }
         ],
         teammates: [
-            {
-                name: 'UI/UX Team Lead',
-                role: 'Senior Designer',
-                initials: 'TL',
-                contribution: 'Provided design direction and mentorship'
-            },
-            {
-                name: 'Research Team',
-                role: 'UX Researchers',
-                initials: 'RT',
-                contribution: 'Collaborated on user research and testing'
-            }
+            { name: 'Salma Elghroury', role: 'UI Designer', initials: 'SE', contribution: 'Designed app interface and branding' },
+            { name: 'Mayar Ahmed', role: 'UX Researcher', initials: 'MA', contribution: 'Conducted user research and usability testing' },
+            { name: 'Waffa Hammad', role: 'Prototyping Specialist', initials: 'WH', contribution: 'Developed interactive prototypes' },
+            { name: 'Ammar Ramdan', role: 'UI Designer', initials: 'AR', contribution: 'Managed project timelines and deliverables' }
         ],
         links: [
             { text: 'View Figma Design', url: '#', icon: '🎨' },
@@ -303,30 +273,12 @@ const projectsData = {
         ],
         tools: [
             { name: 'Figma', icon: '🎨' },
-            { name: 'Miro', icon: '📋' },
+            { name: 'Figjam', icon: '📋' },
             { name: 'Prototyping', icon: '🔄' },
             { name: 'User Research', icon: '📊' },
             { name: 'Wireframing', icon: '📐' }
         ],
-        teammates: [
-            {
-                name: 'UI/UX Team Lead',
-                role: 'Senior Designer',
-                initials: 'TL',
-                contribution: 'Provided design direction and mentorship'
-            },
-            {
-                name: 'Research Team',
-                role: 'UX Researchers',
-                initials: 'RT',
-                contribution: 'Collaborated on user research and testing'
-            }
-        ],
-        links: [
-            { text: 'View Figma Design', url: '#', icon: '🎨' },
-            { text: 'Case Study', url: '#', icon: '📖' },
-            { text: 'Prototype Demo', url: '#', icon: '▶️' }
-        ]
+        teammates: [] // Solo work
     }
 };
 

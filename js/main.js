@@ -10,11 +10,67 @@ document.addEventListener('DOMContentLoaded', function() {
     initTestimonialRotation();
     initAchievementAnimations();
     initContactAnimations();
+    initProjectCards();
     
     // Console welcome message
     console.log('%c👋 Hey there! Welcome to Ahmed Hesham\'s Portfolio', 'color: #7777c6; font-size: 16px; font-weight: bold;');
     console.log('%cInterested in the code? Check out the GitHub repo!', 'color: #ff77c6; font-size: 14px;');
 });
+
+// Initialize project cards with click handlers and hover effects
+function initProjectCards() {
+    const projectCards = document.querySelectorAll('.project-card');
+    
+    projectCards.forEach(card => {
+        // Add cursor pointer style
+        card.style.cursor = 'pointer';
+        
+        // Add click effect
+        card.addEventListener('click', function(e) {
+            // Get the project ID from onclick attribute or data attribute
+            const onclick = this.getAttribute('onclick');
+            if (onclick) {
+                // Extract URL from onclick
+                const url = onclick.match(/'([^']+)'/)[1];
+                window.location.href = url;
+            }
+        });
+        
+        // Enhanced hover effects
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-15px) scale(1.02)';
+            this.style.boxShadow = '0 30px 60px rgba(119, 119, 198, 0.3)';
+            this.style.borderColor = '#7777c6';
+            
+            // Animate project image
+            const projectImage = this.querySelector('.project-image');
+            if (projectImage) {
+                projectImage.style.transform = 'scale(1.05)';
+            }
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+            this.style.boxShadow = '0 15px 40px rgba(0,0,0,0.3)';
+            this.style.borderColor = '#2a2a4a';
+            
+            // Reset project image
+            const projectImage = this.querySelector('.project-image');
+            if (projectImage) {
+                projectImage.style.transform = 'scale(1)';
+            }
+        });
+        
+        // Add click animation
+        card.addEventListener('mousedown', function() {
+            this.style.transform = 'translateY(-10px) scale(0.98)';
+        });
+        
+        card.addEventListener('mouseup', function() {
+            this.style.transform = 'translateY(-15px) scale(1.02)';
+        });
+    });
+}
 
 // Smooth scrolling for anchor links
 function initSmoothScrolling() {
@@ -396,6 +452,15 @@ style.textContent = `
         50% {
             box-shadow: 0 0 20px rgba(119, 119, 198, 0.8);
         }
+    }
+    
+    .project-card {
+        transition: all 0.3s ease !important;
+    }
+    
+    .project-image {
+        transition: transform 0.3s ease !important;
+        overflow: hidden;
     }
 `;
 
