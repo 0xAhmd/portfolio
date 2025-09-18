@@ -58,14 +58,14 @@ const projectsData = {
             }
         ],
         tools: [
-            { name: 'Flutter', icon: '📱' },
-            { name: 'Dart', icon: '🎯' },
-            { name: 'Firebase', icon: '🔥' },
-            { name: 'BLoC', icon: '🏗️' },
-            { name: 'Figma', icon: '🎨' },
-            { name: 'Git', icon: '📚' },
+            { name: 'Flutter', icon: 'assets/images/flutter.png' },
+            { name: 'Dart', icon: 'assets/images/dart.png' },
+            { name: 'Firebase', icon: 'assets/images/firebase.png' },
+            { name: 'BLoC', icon: 'assets/images/bloc.svg' },
+            { name: 'Figma', icon: 'assets/images/figma.png' },
+            { name: 'Git', icon: 'assets/images/git.png' },
             { name: 'REST APIs', icon: '🔌' },
-            { name: 'Cloud Firestore', icon: '☁️' }
+            { name: 'Cloud Firestore', icon: 'assets/images/firebase.png' }
         ],
         teammates: [] // Solo work
     },
@@ -127,9 +127,9 @@ const projectsData = {
             }
         ],
         tools: [
-            { name: 'Flutter', icon: '📱' },
-            { name: 'Dart', icon: '🎯' },
-            { name: 'Gemini AI', icon: '🤖' },
+            { name: 'Flutter', icon: 'assets/images/flutter.png' },
+            { name: 'Dart', icon: 'assets/images/dart.png' },
+            { name: 'Gemini AI', icon: 'assets/images/gemini.png' },
             { name: 'Provider', icon: '🔄' },
             { name: 'Markdown', icon: '📝' },
             { name: 'Hive DB', icon: '💾' },
@@ -195,10 +195,9 @@ const projectsData = {
             }
         ],
         tools: [
-            { name: 'Figma', icon: '🎨' },
-            { name: 'Figjam', icon: '📋' },
-            { name: 'Adobe XD', icon: '🎯' },
-            { name: 'Prototyping', icon: '🔄' },
+            { name: 'Figma', icon: 'assets/images/figma.png' },
+            { name: 'Figjam', icon: 'assets/images/figma.png' },
+            { name: 'Prototyping', icon: 'assets/images/element.png' },
             { name: 'User Research', icon: '📊' },
             { name: 'Wireframing', icon: '📐' }
         ],
@@ -272,9 +271,9 @@ const projectsData = {
             }
         ],
         tools: [
-            { name: 'Figma', icon: '🎨' },
-            { name: 'Figjam', icon: '📋' },
-            { name: 'Prototyping', icon: '🔄' },
+            { name: 'Figma', icon: 'assets/images/figma.png' },
+            { name: 'Figjam', icon: 'assets/images/figma.png' },
+            { name: 'Prototyping', icon: 'assets/images/element.png' },
             { name: 'User Research', icon: '📊' },
             { name: 'Wireframing', icon: '📐' }
         ],

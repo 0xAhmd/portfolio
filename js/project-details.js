@@ -144,11 +144,34 @@ function createContributionCard(contribution) {
     return card;
 }
 
-// Create tool badge
+// Create tool badge with support for both image and emoji icons
 function createToolBadge(tool) {
     const badge = document.createElement('div');
     badge.className = 'tool-badge';
-    badge.innerHTML = `<span class="tool-icon">${tool.icon}</span> ${tool.name}`;
+    
+    // Check if icon is an image path or emoji
+    if (tool.icon.startsWith('assets/')) {
+        // It's an image path
+        const img = document.createElement('img');
+        img.src = tool.icon;
+        img.alt = tool.name;
+        img.className = 'tool-icon-img';
+        img.onerror = function() {
+            // Fallback to a default icon if image fails to load
+            this.style.display = 'none';
+            const fallbackSpan = document.createElement('span');
+            fallbackSpan.className = 'tool-icon';
+            fallbackSpan.textContent = '🔧';
+            badge.insertBefore(fallbackSpan, badge.firstChild);
+        };
+        
+        badge.appendChild(img);
+        badge.appendChild(document.createTextNode(tool.name));
+    } else {
+        // It's an emoji
+        badge.innerHTML = `<span class="tool-icon">${tool.icon}</span> ${tool.name}`;
+    }
+    
     return badge;
 }
 
@@ -467,6 +490,32 @@ style.textContent = `
         font-size: 1.2em;
     }
     
+    .tool-icon-img {
+        width: 20px;
+        height: 20px;
+        margin-right: 8px;
+        object-fit: contain;
+        vertical-align: middle;
+    }
+    
+    .tool-badge {
+        display: flex;
+        align-items: center;
+        padding: 8px 16px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: all 0.3s ease;
+    }
+    
+    .tool-badge:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+    }
+    
     @media (max-width: 768px) {
         .project-navigation {
             flex-direction: column;
@@ -475,6 +524,11 @@ style.textContent = `
         
         .nav-button {
             width: 100%;
+        }
+        
+        .tool-icon-img {
+            width: 18px;
+            height: 18px;
         }
     }
 `;
