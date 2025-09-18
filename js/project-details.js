@@ -19,21 +19,26 @@ function loadProjectDetails(project) {
     document.title = `${project.name} - Ahmed Hesham`;
     
     // Update hero section
-    document.getElementById('project-name').textContent = project.name;
-    document.getElementById('project-tagline').textContent = project.tagline;
+    const projectNameEl = document.getElementById('project-name');
+    const projectTaglineEl = document.getElementById('project-tagline');
+    
+    if (projectNameEl) projectNameEl.textContent = project.name;
+    if (projectTaglineEl) projectTaglineEl.textContent = project.tagline;
     
     // Update description
     const descriptionContainer = document.getElementById('project-description');
-    descriptionContainer.innerHTML = '';
-    project.description.forEach(paragraph => {
-        const p = document.createElement('p');
-        p.textContent = paragraph;
-        descriptionContainer.appendChild(p);
-    });
+    if (descriptionContainer) {
+        descriptionContainer.innerHTML = '';
+        project.description.forEach(paragraph => {
+            const p = document.createElement('p');
+            p.textContent = paragraph;
+            descriptionContainer.appendChild(p);
+        });
+    }
     
     // Update main image
     const mainImage = document.getElementById('main-project-image');
-    if (project.mainImage) {
+    if (mainImage && project.mainImage) {
         mainImage.src = project.mainImage;
         mainImage.alt = project.name;
         mainImage.onerror = function() {
@@ -43,64 +48,76 @@ function loadProjectDetails(project) {
     
     // Update additional images
     const additionalImagesContainer = document.getElementById('additional-images');
-    additionalImagesContainer.innerHTML = '';
-    if (project.additionalImages && project.additionalImages.length > 0) {
-        project.additionalImages.forEach(imageSrc => {
-            const img = document.createElement('img');
-            img.src = imageSrc;
-            img.alt = `${project.name} screenshot`;
-            img.addEventListener('click', () => openImageModal(imageSrc));
-            img.onerror = function() {
-                this.style.display = 'none';
-            };
-            additionalImagesContainer.appendChild(img);
-        });
+    if (additionalImagesContainer) {
+        additionalImagesContainer.innerHTML = '';
+        if (project.additionalImages && project.additionalImages.length > 0) {
+            project.additionalImages.forEach(imageSrc => {
+                const img = document.createElement('img');
+                img.src = imageSrc;
+                img.alt = `${project.name} screenshot`;
+                img.addEventListener('click', () => openImageModal(imageSrc));
+                img.onerror = function() {
+                    this.style.display = 'none';
+                };
+                additionalImagesContainer.appendChild(img);
+            });
+        }
     }
     
     // Update contributions
     const contributionsContainer = document.getElementById('project-contributions');
-    contributionsContainer.innerHTML = '';
-    project.contributions.forEach(contribution => {
-        const card = createContributionCard(contribution);
-        contributionsContainer.appendChild(card);
-    });
+    if (contributionsContainer) {
+        contributionsContainer.innerHTML = '';
+        project.contributions.forEach(contribution => {
+            const card = createContributionCard(contribution);
+            contributionsContainer.appendChild(card);
+        });
+    }
     
     // Update tools
     const toolsContainer = document.getElementById('project-tools');
-    toolsContainer.innerHTML = '';
-    project.tools.forEach(tool => {
-        const badge = createToolBadge(tool);
-        toolsContainer.appendChild(badge);
-    });
+    if (toolsContainer) {
+        toolsContainer.innerHTML = '';
+        project.tools.forEach(tool => {
+            const badge = createToolBadge(tool);
+            toolsContainer.appendChild(badge);
+        });
+    }
     
     // Update team section
     const teamSection = document.getElementById('team-section');
     const teamContainer = document.getElementById('project-team');
-    teamContainer.innerHTML = '';
     
-    if (project.teammates && project.teammates.length > 0) {
-        teamSection.style.display = 'block';
-        project.teammates.forEach(teammate => {
-            const memberCard = createTeamMemberCard(teammate);
-            teamContainer.appendChild(memberCard);
-        });
-    } else {
-        teamSection.style.display = 'none';
+    if (teamSection && teamContainer) {
+        teamContainer.innerHTML = '';
+        
+        if (project.teammates && project.teammates.length > 0) {
+            teamSection.style.display = 'block';
+            project.teammates.forEach(teammate => {
+                const memberCard = createTeamMemberCard(teammate);
+                teamContainer.appendChild(memberCard);
+            });
+        } else {
+            teamSection.style.display = 'none';
+        }
     }
     
     // Update links
     const linksSection = document.getElementById('links-section');
     const linksContainer = document.getElementById('project-links');
-    linksContainer.innerHTML = '';
     
-    if (project.links && project.links.length > 0) {
-        linksSection.style.display = 'block';
-        project.links.forEach(link => {
-            const linkButton = createLinkButton(link);
-            linksContainer.appendChild(linkButton);
-        });
-    } else {
-        linksSection.style.display = 'none';
+    if (linksSection && linksContainer) {
+        linksContainer.innerHTML = '';
+        
+        if (project.links && project.links.length > 0) {
+            linksSection.style.display = 'block';
+            project.links.forEach(link => {
+                const linkButton = createLinkButton(link);
+                linksContainer.appendChild(linkButton);
+            });
+        } else {
+            linksSection.style.display = 'none';
+        }
     }
     
     // Initialize animations
@@ -181,7 +198,7 @@ function createLinkButton(link) {
     return button;
 }
 
-// Setup project navigation
+// Setup project navigation - FIXED VERSION
 function setupProjectNavigation(currentProjectId) {
     const projectIds = Object.keys(projectsData);
     const currentIndex = projectIds.indexOf(currentProjectId);
@@ -189,23 +206,66 @@ function setupProjectNavigation(currentProjectId) {
     const prevButton = document.getElementById('prev-project');
     const nextButton = document.getElementById('next-project');
     
+    console.log('Current project:', currentProjectId);
+    console.log('Current index:', currentIndex);
+    console.log('Project IDs:', projectIds);
+    console.log('Prev button:', prevButton);
+    console.log('Next button:', nextButton);
+    
     // Previous project
-    if (currentIndex > 0) {
-        const prevProjectId = projectIds[currentIndex - 1];
-        prevButton.href = `project-details.html?project=${prevProjectId}`;
-        prevButton.style.display = 'flex';
-    } else {
-        prevButton.style.display = 'none';
+    if (prevButton) {
+        if (currentIndex > 0) {
+            const prevProjectId = projectIds[currentIndex - 1];
+            const prevProjectName = projectsData[prevProjectId].name;
+            
+            prevButton.href = `project-details.html?project=${prevProjectId}`;
+            prevButton.style.display = 'flex';
+            prevButton.innerHTML = `<span>←</span> ${prevProjectName}`;
+            
+            // Add click event listener as backup
+            prevButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.location.href = `project-details.html?project=${prevProjectId}`;
+            });
+            
+            console.log('Previous project set:', prevProjectId);
+        } else {
+            prevButton.style.display = 'none';
+            console.log('No previous project available');
+        }
     }
     
     // Next project
-    if (currentIndex < projectIds.length - 1) {
-        const nextProjectId = projectIds[currentIndex + 1];
-        nextButton.href = `project-details.html?project=${nextProjectId}`;
-        nextButton.style.display = 'flex';
-    } else {
-        nextButton.style.display = 'none';
+    if (nextButton) {
+        if (currentIndex < projectIds.length - 1) {
+            const nextProjectId = projectIds[currentIndex + 1];
+            const nextProjectName = projectsData[nextProjectId].name;
+            
+            nextButton.href = `project-details.html?project=${nextProjectId}`;
+            nextButton.style.display = 'flex';
+            nextButton.innerHTML = `${nextProjectName} <span>→</span>`;
+            
+            // Add click event listener as backup
+            nextButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.location.href = `project-details.html?project=${nextProjectId}`;
+            });
+            
+            console.log('Next project set:', nextProjectId);
+        } else {
+            nextButton.style.display = 'none';
+            console.log('No next project available');
+        }
     }
+    
+    // Add keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft' && prevButton && prevButton.style.display !== 'none') {
+            prevButton.click();
+        } else if (e.key === 'ArrowRight' && nextButton && nextButton.style.display !== 'none') {
+            nextButton.click();
+        }
+    });
 }
 
 // Initialize page animations
@@ -294,7 +354,9 @@ function openImageModal(imageSrc) {
     modal.addEventListener('click', () => {
         modal.style.animation = 'fadeOut 0.3s ease';
         setTimeout(() => {
-            document.body.removeChild(modal);
+            if (document.body.contains(modal)) {
+                document.body.removeChild(modal);
+            }
         }, 300);
     });
     
@@ -332,7 +394,9 @@ function showComingSoonMessage() {
     setTimeout(() => {
         message.style.animation = 'bounceOut 0.5s ease';
         setTimeout(() => {
-            document.body.removeChild(message);
+            if (document.body.contains(message)) {
+                document.body.removeChild(message);
+            }
         }, 500);
     }, 2000);
 }
@@ -365,5 +429,53 @@ style.textContent = `
         0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
         100% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
     }
+    
+    .project-navigation {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 4rem 0 2rem;
+        gap: 1rem;
+    }
+    
+    .nav-button {
+        padding: 12px 24px;
+        background: linear-gradient(135deg, #7777c6, #ff77c6);
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        min-width: 150px;
+        justify-content: center;
+    }
+    
+    .nav-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(119, 119, 198, 0.4);
+    }
+    
+    .nav-button.center {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .nav-button span {
+        font-size: 1.2em;
+    }
+    
+    @media (max-width: 768px) {
+        .project-navigation {
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .nav-button {
+            width: 100%;
+        }
+    }
 `;
-document.head.appendChild(style);   
+document.head.appendChild(style);
