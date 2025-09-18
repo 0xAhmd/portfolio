@@ -303,7 +303,7 @@ const projectsData = {
         ],
         tools: [
             { name: 'Figma', icon: '🎨' },
-            { name: 'Miro', icon: '📋' }            ,
+            { name: 'Miro', icon: '📋' },
             { name: 'Prototyping', icon: '🔄' },
             { name: 'User Research', icon: '📊' },
             { name: 'Wireframing', icon: '📐' }
@@ -324,6 +324,13 @@ const projectsData = {
         ],
         links: [
             { text: 'View Figma Design', url: '#', icon: '🎨' },
-            { text: 'Case Study', url: '#', icon: '📖' }    ,
+            { text: 'Case Study', url: '#', icon: '📖' },
             { text: 'Prototype Demo', url: '#', icon: '▶️' }
-    ],
+        ]
+    }
+};
+
+// Export for use in other files
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = projectsData;
+}
