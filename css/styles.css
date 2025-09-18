@@ -766,4 +766,65 @@ html {
 .loading-image.loaded {
     opacity: 1;
     transform: scale(1);
+}/* Additional styles for image icons - Add these to your existing styles.css */
+
+/* Service Icon Images */
+.service-icon-img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 20px;
+    object-fit: contain;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.service-card:hover .service-icon-img {
+    transform: scale(1.1);
+    filter: brightness(1.1);
+}
+
+/* Skill Category Icon Images */
+.skill-category-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+    object-fit: contain;
+    vertical-align: middle;
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.skill-category:hover .skill-category-icon {
+    transform: scale(1.1);
+}
+
+/* Update existing service card styles to handle both emoji and image icons */
+.service-card .service-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    display: block;
+}
+
+/* Ensure proper spacing for skill category titles */
+.skill-category h3 {
+    color: #ffffff;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .service-icon-img {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .skill-category-icon {
+        width: 20px;
+        height: 20px;
+    }
 }
